@@ -1,0 +1,16 @@
+/*
+Pronto Push - Wordpress Plugin
+Asks visitors on Mavericks if they want to subscribe on Pronto Push.
+*/
+
+jQuery(function() {
+	var _prontoPushTemplate = '<style>.pp_button{text-align:center;background-color:#98c924;background-image:-webkit-gradient(linear,left top,left bottom,from(#98c924),to(#81ab1d));background-image:-webkit-linear-gradient(top,#98c924,#81ab1d);background-image:-moz-linear-gradient(top,#98c924,#81ab1d);background-image:-o-linear-gradient(top,#98c924,#81ab1d);background-image:-ms-linear-gradient(top,#98c924,#81ab1d);background-image:linear-gradient(top,#98c924,#81ab1d);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0, StartColorStr=\'#98c924\', EndColorStr=\'#81ab1d\');padding-left:10px;padding-right:10px;padding-top:4px;padding-bottom:4px;color:#fff;text-shadow:rgba(0,0,0,.4) 0 -1px 0;box-shadow:inset rgba(255,255,255,.3) 0 1px 0;cursor:pointer;border-radius:200px;border:1px solid #6c9115;font-size:14px;text-decoration:none}.pp_button:hover{background-color:#7aa319;background-image:-webkit-gradient(linear,left top,left bottom,from(#7aa319),to(#638512));background-image:-webkit-linear-gradient(top,#7aa319,#638512);background-image:-moz-linear-gradient(top,#7aa319,#638512);background-image:-o-linear-gradient(top,#7aa319,#638512);background-image:-ms-linear-gradient(top,#7aa319,#638512);background-image:linear-gradient(top,#7aa319,#638512);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0, StartColorStr=\'#7aa319\', EndColorStr=\'#638512\')}.pp_button:active{background-color:#81ac1d;background-image:-webkit-gradient(linear,left top,left bottom,from(#81ac1d),to(#97c723));background-image:-webkit-linear-gradient(top,#81ac1d,#97c723);background-image:-moz-linear-gradient(top,#81ac1d,#97c723);background-image:-o-linear-gradient(top,#81ac1d,#97c723);background-image:-ms-linear-gradient(top,#81ac1d,#97c723);background-image:linear-gradient(top,#81ac1d,#97c723);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0, StartColorStr=\'#81ac1d\', EndColorStr=\'#97c723\')}</style><div id="pp_window" style="background: #fff; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px; box-shadow: rgba(0,0,0,0.4) 0 5px 10px; position: fixed; top: 0; left: 50%; width: 500px; height: 130px; margin-left: -250px; z-index: 99999999999;"><div style="font-weight: bold; text-align: center; font-size: 13px; margin: 5px;">This website uses Pronto Push to deliver push notifications.</div><div style="margin: 10px; margin-top: 10px; font-size: 14px;"><strong>'+prontopush_name+'</strong> would like to send push notifications to your Mac right when new articles are added.</div><div style="position: absolute; bottom: 5px; left: 0; width: 100%;"><div class="pp_button" style="float: left; margin-left: 5px;" id="pp_ignore">Ignore</div><div class="pp_button" style="float: right; font-weight: bold; margin-right: 5px;" id="pp_allow">Allow</div></div></div>';
+	jQuery(document.body).append(_prontoPushTemplate);
+	jQuery("#pp_ignore").click(function() {
+		jQuery("#pp_window").remove();
+	});
+	jQuery("#pp_allow").click(function() {
+		jQuery("#pp_window").remove();
+		window.open("https://prontopush.com/api/3rdPartySubscribe?id="+prontopush_id,"Pronto Push","height=450,width=550,location=no,menubar=no,resizable=no,scrollbars=no,status=no,titlebar=no,toolbar=no");
+	});
+});
